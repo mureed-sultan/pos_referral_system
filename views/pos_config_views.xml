@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Simple form view for POS Referral Settings -->
+    <record id="view_pos_referral_config_form" model="ir.ui.view">
+        <field name="name">pos.referral.config.form</field>
+        <field name="model">pos.config</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="referral_enabled"/>
+                        </group>
+                    </group>
+
+                    <group string="Discount Settings">
+                        <field name="referrer_percentage"/>
+                        <field name="referred_percentage"/>
+                    </group>
+
+                    <group string="Code Settings">
+                        <field name="referral_code_prefix"/>
+                        <field name="max_uses_per_code"/>
+                        <field name="min_order_amount"/>
+                        <field name="code_validity_days"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open referral configuration -->
+    <record id="action_pos_referral_config" model="ir.actions.act_window">
+        <field name="name">POS Referral Configuration</field>
+        <field name="res_model">pos.config</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_pos_referral_config_form"/>
+        <field name="target">current</field>
+        <field name="context">{'form_view_ref': 'view_pos_referral_config_form'}</field>
+    </record>
+</odoo>

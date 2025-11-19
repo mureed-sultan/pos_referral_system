@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="pos_referral_system.ReferralPopup" owl="1">
+        <!-- Modal Overlay -->
+        <div class="pos-referral-popup-overlay o_dialog_container">
+            <!-- Modal Content -->
+            <div class="pos-referral-popup modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header popup-header">
+                        <h2 class="modal-title">Referral System</h2>
+                        <button type="button" class="btn btn-secondary" t-on-click="close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body popup-body">
+                        <!-- Action Selection -->
+                        <div class="mb-3">
+                            <label class="fw-bold mb-2">Select Action:</label>
+                            <div class="d-flex gap-3">
+                                <label class="d-flex align-items-center">
+                                    <input
+                                        type="radio"
+                                        name="action"
+                                        value="generate"
+                                        t-model="state.action"
+                                        class="me-2"
+                                    />
+                                    Generate Code
+                                </label>
+                                <label class="d-flex align-items-center">
+                                    <input
+                                        type="radio"
+                                        name="action"
+                                        value="redeem"
+                                        t-model="state.action"
+                                        class="me-2"
+                                    />
+                                    Redeem Code
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Generate Code Section -->
+                        <div t-if="state.action === 'generate'" class="mb-3">
+                            <div class="alert alert-info">
+                                <strong>Generate a referral code for the selected customer.</strong>
+                                <div t-if="selectedCustomer" class="mt-1">
+                                    Customer: <strong t-esc="selectedCustomer.name"/>
+                                    <t t-if="hasPhoneNumber">
+                                        <br/>Phone:
+                                        <strong t-esc="selectedCustomer.phone || selectedCustomer.mobile"/>
+                                    </t>
+                                </div>
+                            </div>
+
+                            <t t-if="state.generatedCode">
+                                <div class="alert alert-success">
+                                    <strong>Generated Code:</strong>
+                                    <div class="h4 mt-2 text-center" t-esc="state.generatedCode"/>
+                                    <div class="text-muted small mt-1">Share this code with friends for rewards!</div>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <button class="btn btn-primary btn-lg w-100" t-on-click="generateCode">
+                                    <i class="fa fa-gift me-2"></i>
+                                    Generate Referral Code
+                                </button>
+                            </t>
+                        </div>
+
+                        <!-- Redeem Code Section -->
+                        <div t-if="state.action === 'redeem'" class="mb-3">
+                            <div class="alert alert-info">
+                                <strong>Enter referral code to apply discount:</strong>
+                            </div>
+
+                            <input
+                                type="text"
+                                class="form-control form-control-lg mb-3"
+                                placeholder="Enter referral code"
+                                t-model="state.code"
+                            />
+
+                            <button class="btn btn-success btn-lg w-100" t-on-click="redeemCode">
+                                <i class="fa fa-ticket me-2"></i>
+                                Apply Referral Discount
+                            </button>
+                        </div>
+
+                        <!-- Error Message -->
+                        <t t-if="state.error">
+                            <div class="alert alert-danger mt-3">
+                                <i class="fa fa-exclamation-triangle me-2"></i>
+                                <t t-esc="state.error"/>
+                            </div>
+                        </t>
+                    </div>
+
+                    <div class="modal-footer popup-footer">
+                        <button class="btn btn-secondary" t-on-click="close">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

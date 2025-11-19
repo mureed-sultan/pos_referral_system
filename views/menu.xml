@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Reference System Menu -->
+    <menuitem
+        id="menu_reference_system_main"
+        name="Reference System"
+        parent="point_of_sale.menu_point_root"
+        sequence="10"
+        groups="base.group_user"/>
+
+    <!-- Referral Codes Submenu -->
+    <menuitem
+        id="menu_reference_system_codes"
+        name="Referral Codes"
+        parent="menu_reference_system_main"
+        action="action_pos_referral_codes"
+        sequence="10"
+        groups="base.group_user"/>
+
+    <!-- Referral Configuration Submenu -->
+    <menuitem
+        id="menu_reference_system_settings"
+        name="Settings"
+        parent="menu_reference_system_main"
+        action="action_referral_settings"
+        sequence="20"
+        groups="base.group_user"/>
+    <!-- Referral Analytics Submenu -->
+    <menuitem
+        id="menu_reference_system_analytics"
+        name="Analytics &amp; Reports"
+        parent="menu_reference_system_main"
+        sequence="30"
+        groups="base.group_user"/>
+
+    <!-- Referral Performance Dashboard -->
+    <record id="action_referral_performance" model="ir.actions.act_window">
+        <field name="name">Referral Performance</field>
+        <field name="res_model">pos.referral.code</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="domain">[]</field>
+        <field name="context">{
+            'search_default_active': 1,
+            'group_by': ['customer_id', 'issue_date:month']
+        }</field>
+        <field name="search_view_id" ref="view_referral_code_search"/>
+    </record>
+
+    <menuitem
+        id="menu_reference_performance"
+        name="Performance Dashboard"
+        parent="menu_reference_system_analytics"
+        action="action_referral_performance"
+        sequence="10"
+        groups="base.group_user"/>
+
+    <!-- Top Referrers Report -->
+    <record id="action_top_referrers" model="ir.actions.act_window">
+        <field name="name">Top Referrers</field>
+        <field name="res_model">pos.referral.code</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('used_count', '>', 0)]</field>
+        <field name="context">{
+            'search_default_active': 1,
+            'group_by': ['customer_id']
+        }</field>
+        <field name="search_view_id" ref="view_referral_code_search"/>
+    </record>
+
+    <menuitem
+        id="menu_top_referrers"
+        name="Top Referrers"
+        parent="menu_reference_system_analytics"
+        action="action_top_referrers"
+        sequence="20"
+        groups="base.group_user"/>
+
+    <!-- Expired Codes Report -->
+    <record id="action_expired_codes" model="ir.actions.act_window">
+        <field name="name">Expired Codes</field>
+        <field name="res_model">pos.referral.code</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[('is_active', '=', False)]</field>
+        <field name="context">{
+            'search_default_fully_used': 1
+        }</field>
+        <field name="search_view_id" ref="view_referral_code_search"/>
+    </record>
+
+    <menuitem
+        id="menu_expired_codes"
+        name="Expired/Used Codes"
+        parent="menu_reference_system_analytics"
+        action="action_expired_codes"
+        sequence="30"
+        groups="base.group_user"/>
+
+
+</odoo>

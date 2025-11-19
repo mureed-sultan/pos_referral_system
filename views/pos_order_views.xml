@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_order_form_inherit_referral" model="ir.ui.view">
+        <field name="name">pos.order.form.inherit.referral</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <div class="o_group">
+                    <group string="Referral Information">
+                        <field name="referral_code_generated" readonly="1"/>
+                        <field name="used_referral_code" readonly="1"/>
+                    </group>
+                    <group string="Referral Discounts">
+                        <field name="referral_discount" readonly="1"/>
+                        <field name="referral_reward_created" readonly="1"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

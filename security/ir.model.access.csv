@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_pos_referral_code,pos.referral.code,model_pos_referral_code,base.group_user,1,1,1,1
+access_pos_config_referral,pos.config,model_pos_config,base.group_user,1,1,1,1
+access_pos_order_referral,pos.order,model_pos_order,base.group_user,1,1,1,1
+access_referral_settings,referral.settings,model_referral_settings,base.group_user,1,1,1,1

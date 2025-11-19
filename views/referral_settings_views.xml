@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_referral_settings_form" model="ir.ui.view">
+        <field name="name">referral.settings.form</field>
+        <field name="model">referral.settings</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="pos_config_id" required="1"/>
+                            <field name="referral_enabled"/>
+                        </group>
+                    </group>
+
+                    <group string="Discount Settings">
+                        <field name="referrer_percentage"/>
+                        <field name="referred_percentage"/>
+                    </group>
+
+                    <group string="Code Settings">
+                        <field name="referral_code_prefix"/>
+                        <field name="max_uses_per_code"/>
+                        <field name="min_order_amount"/>
+                        <field name="code_validity_days"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_referral_settings_list" model="ir.ui.view">
+        <field name="name">referral.settings.list</field>
+        <field name="model">referral.settings</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="pos_config_id"/>
+                <field name="referral_enabled"/>
+                <field name="referrer_percentage"/>
+                <field name="referred_percentage"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_referral_settings" model="ir.actions.act_window">
+        <field name="name">Referral Settings</field>
+        <field name="res_model">referral.settings</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_referral_settings_list"/>
+    </record>
+</odoo>

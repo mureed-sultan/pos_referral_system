@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <!-- Template for Referral Button -->
+    <t t-name="pos_referral_system.ReferralButton" owl="1">
+        <button class="btn btn-secondary btn-lg py-5" t-on-click="onClick">
+            <i class="fa fa-gift me-1" role="img" aria-label="Reference" title="Reference"></i>
+            Reference
+        </button>
+    </t>
+
+    <!-- Override ControlButtons template to include our button -->
+    <t t-inherit="point_of_sale.ControlButtons" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[hasclass('control-buttons')]" position="inside">
+            <ReferralButton />
+        </xpath>
+    </t>
+</templates>
