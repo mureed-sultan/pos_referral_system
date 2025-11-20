@@ -33,6 +33,7 @@ Long description of module's purpose
             'pos_referral_system/static/src/js/ReferralSystem.js',
             'pos_referral_system/static/src/xml/ControlButtons.xml',
             'pos_referral_system/static/src/xml/ReferralPopup.xml',
+            'pos_referral_system/static/src/xml/ReceiptScreen.xml'
         ],
     },
 }

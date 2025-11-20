@@ -75,7 +75,7 @@ class ReferralPopup extends Component {
             const order = this.env.pos.get_order();
             const result = await this.orm.call(
                 "pos.order",
-                "apply_referral_discount",
+                "list",
                 [this.state.code.trim().toUpperCase(), order.get_total_with_tax()]
             );
 

@@ -10,7 +10,7 @@
 
     <!-- Referral Codes Submenu -->
     <menuitem
-        id="menu_reference_system_codes"
+        id="menu_pos_referral_codes"
         name="Referral Codes"
         parent="menu_reference_system_main"
         action="action_pos_referral_codes"
